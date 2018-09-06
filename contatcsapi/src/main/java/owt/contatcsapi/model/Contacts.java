@@ -38,7 +38,7 @@ public class Contacts implements Serializable {
 
     private String mobile;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "contacts_skills",
             joinColumns = @JoinColumn(name = "contacts_id"),
             inverseJoinColumns = @JoinColumn(name = "skills_id"))

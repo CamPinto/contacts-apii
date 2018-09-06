@@ -21,7 +21,7 @@ public class User {
     @JsonIgnore
     private int active;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "user")
     private Set<Contacts> contacts;
 
 

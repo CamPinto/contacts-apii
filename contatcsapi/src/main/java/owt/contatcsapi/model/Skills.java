@@ -29,7 +29,7 @@ public class Skills implements Serializable {
 
 
 
-    @ManyToMany(mappedBy = "skills")
+    @ManyToMany(fetch=FetchType.EAGER, mappedBy = "skills")
     @JsonIgnore
     private Set<Contacts> contacts = new HashSet<>();
 
