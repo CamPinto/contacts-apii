@@ -1,5 +1,6 @@
 # contacts-api
-## An API build with Spring boot using Maven, JPA directory, hibernate and Spring Security form login with Thymeleaf
-- Used with mySql local database. Please note that you can find/change connection informations in application.properties file. 
+## An API build with Spring with Maven, JPA directory, Spring Security, Thymeleaf
+- Used with mySql local database. Please note that you can find connection informations in application.properties file. 
 - Database schema locates in src/main/resources/schema.sql
+- Acces to Swagger UI doc at http://yourLocalhostAddress/swagger-ui.html
 

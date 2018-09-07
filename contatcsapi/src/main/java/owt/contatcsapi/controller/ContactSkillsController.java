@@ -48,4 +48,33 @@ public class ContactSkillsController {
 
         return updatedContact;
     }
+
+    // Delete skill to a contact
+    @DeleteMapping("/deleteSkillFromContact/{id}")
+    public Contacts deleteSkillFromContact(@PathVariable(value = "id") Long contactId,
+                             @RequestBody Long skillId) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+
+        Contacts contact = contactRepo.findByUsernameAndId_contact(name, contactId);
+
+        Set<Skills> skills = contactRepo.findById(contactId).get().getSkills();
+
+        for(Iterator<Skills> it = skills.iterator(); it.hasNext();){
+            Skills skillToDelete = it.next();
+            Long id = skillToDelete.getId_skill();
+            if(id.equals(skillId) ){
+                skills.remove(skillToDelete);
+            }
+        }
+
+        contact.setSkills(skills);
+        contact.setUser(userRepository.findByUsername(name));
+        Contacts updatedContact = contactRepo.save(contact);
+
+        return updatedContact;
+    }
+
+
 }

@@ -75,4 +75,12 @@ public class Skills implements Serializable {
     public void setContacts(Set<Contacts> contacts) {
         this.contacts = contacts;
     }
+
+    public Long getId_skill() {
+        return id_skill;
+    }
+
+    public void setId_skill(Long id_skill) {
+        this.id_skill = id_skill;
+    }
 }

@@ -28,7 +28,7 @@ public class ContactController {
 
 
     // Get All Contacts, admin only
-    @GetMapping("/contacts")
+    @GetMapping("/admin/contacts")
     public List<Contacts> getAllContacts() {
         return contactRepo.findAll();
     }

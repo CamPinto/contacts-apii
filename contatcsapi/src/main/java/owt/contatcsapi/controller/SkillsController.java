@@ -1,7 +1,11 @@
 package owt.contatcsapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import owt.contatcsapi.exception.ResourceNotFoundException;
 import owt.contatcsapi.model.Skills;
 import owt.contatcsapi.repository.SkillsRepository;
 
@@ -27,10 +31,21 @@ public class SkillsController {
         return skillsRepository.findById(skillId);
     }
 
-    // Create a new contact
+    // Create a new skill
     @PostMapping("/createSkill")
     public Skills createSkill(@Valid @RequestBody Skills s) {
         return skillsRepository.save(s);
+    }
+
+    //delete a skill
+    @DeleteMapping("/admin/deleteSkill/{id}")
+    public ResponseEntity<?> deleteSkill(@PathVariable(value = "id") Long skillId) {
+       Skills sk = skillsRepository.findById(skillId)
+               .orElseThrow(() -> new ResourceNotFoundException("Skill", "id", skillId));
+
+       skillsRepository.delete(sk);
+
+       return ResponseEntity.ok().build();
     }
 
 }
